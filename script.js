@@ -1,66 +1,98 @@
+let start = document.getElementById("start");
+let quiz = document.getElementById("quiz");
+let question = document.getElementById("question");
+let choiceA = document.getElementById("A");
+let choiceB = document.getElementById("B");
+let choiceC = document.getElementById("C");
+let choiceD = document.getElementById("D");
+let counter = document.getElementById("counter");
+let timeGauge = document.getElementById("timeGauge");
+let progress = document.getElementById("progress");
+let scoreDiv = document.getElementById("highScore");
+
 const questions = [
     {
-        title: "Which of the following is NOT a javascript data type?",
-        choices: ["Array", "Object", "Table", "String"],
-        answer: "Table"
+        question: "Which of the following is NOT a javascript data type?",
+        choiceA: "Array",
+        choiceB: "Object",
+        choiceC: "Table",
+        choiceD: "String",
+        answer: "C"
     },
     {
-        title: "Which parenthesis type is used to invoke functions?",
-        choices: ["{}", "[]", "||", "()"],
-        answer: "()"
+        question: "Which parenthesis type is used to invoke functions?",
+        choiceA: "{}",
+        choiceB: "[]",
+        choiceC: "||",
+        choiceD: "()",
+        answer: "D"
     },
     {
-        title: "What will this statement return: console.log('7' == 7)",
-        choices: ["true", "false", "maybe", "depends"],
-        answer: "true"
+        question: "What will this statement return: console.log('7' == 7)",
+        choiceA: "true",
+        choiceB: "false",
+        choiceC: "maybe",
+        choiceD: "error",
+        answer: "A"
     },
     {
-        title: "What will this statement return: console.log('7' === 7)",
-        choices: ["true", "false", "maybe", "depends"],
-        answer: "false"
+        question: "What will this statement return: console.log('7' === 7)",
+        choiceA: "true",
+        choiceB: "false",
+        choiceC: "maybe",
+        choiceD: "error",
+        answer: "B"
     },
     {
-        title: "Commonly used data types DO NOT include:",
-        choices: ["strings", "booleans", "alerts", "numbers"],
-        answer: "alerts"
+        question: "Commonly used data types DO NOT include:",
+        choiceA: "strings",
+        choiceB: "booleans",
+        choiceC: "alerts",
+        choiceD: "numbers",
+        answer: "C"
     },
     {
-        title: "The condition in an if / else statement is enclosed within ____.",
-        choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
-        answer: "parentheses"
+        question: "The condition in an if / else statement is enclosed within ____.",
+        choiceA: "quotes",
+        choiceB: "curly brackets",
+        choiceC: "parantheses",
+        choiceD: "square brackets",
+        answer: "C"
     },
 
     {
-        title: "Which of these HTML tags do we put our javascript?",
-        choices: ["<js>", "<java>", "<script>", "<javascript>"],
-        answer: "<script>"
+        question: "Which of these HTML tags do we put our javascript in?",
+        choiceA: "<js>",
+        choiceB: "<java>",
+        choiceC: "<script>",
+        choiceD: "<javascript>",
+        answer: "C"
     },
     {
-        title: "How do you add a comment in Javascript?",
-        choices: ["//", "<!-->", "..", "[]"],
-        answer: "//"
+        question: "How do you add a comment in Javascript?",
+        choiceA: "//",
+        choiceB: "<!-->",
+        choiceC: "..",
+        choiceD: "||",
+        answer: "A"
     },
     {
-        title: "Which parenthesis type is used to create an array?",
-        choices: ["{}", "[]", "||", "()"],
-        answer: "[]"
+        question: "Which parenthesis type is used to create an array?",
+        choiceA: "{}",
+        choiceB: "[]",
+        choiceC: "||",
+        choiceD: "()",
+        answer: "B"
     },
     {
-        title: "Javascript is the same thing as Java",
-        choices: ["true", "false"],
-        answer: "false"
-    },
-
-
-
-
-
-
-
-
-
-
-
+        question: "Is Java the samething as Javascript?",
+        choiceA: "yes",
+        choiceB: "no",
+        choiceC: "it used to be",
+        choiceD: "only on Mondays",
+        answer: "B"
+    }
 ];
+
 
 

@@ -1,26 +1,19 @@
-.highscore{
-    text-align: left;
-}
-
-.time-left{
-    text-align: right;
-    margin-top: 0px;
-}
-
-.header{
-    margin-top: 0px;
-}
-
-.homepage{
+.container{
     text-align: center;
 }
 
-.title{
+.description{
+    font-size: 25px;
     margin: auto;
-    height: 400px;
+    height: 150px;
     width: 700px;
 }
 
-p{
-    font-size: 25px;
+.start-button{
+    height: 40px;
+    margin: auto;
+
+
 }
+
+
