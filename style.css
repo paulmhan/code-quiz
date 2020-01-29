@@ -1,0 +1,22 @@
+.highscore{
+    text-align: left;
+}
+
+.time-left{
+    text-align: right;
+
+}
+
+.homepage{
+    text-align: center;
+}
+
+.title{
+    margin: auto;
+    height: 400px;
+    width: 700px;
+}
+
+p{
+    font-size: 25px;
+}
