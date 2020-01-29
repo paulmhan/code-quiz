@@ -4,7 +4,11 @@
 
 .time-left{
     text-align: right;
+    margin-top: 0px;
+}
 
+.header{
+    margin-top: 0px;
 }
 
 .homepage{
