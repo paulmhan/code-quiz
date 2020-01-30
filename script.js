@@ -95,4 +95,16 @@ const questions = [
 ];
 
 
+let lastQuestion = questions.length - 1;
+let whichQuestion = 0;
 
+function showQuestion(){
+    let currentQuestion = questions[whichQuestion];
+    question.innerHTML = "<p>" + currentQuestion.question + "</p>";
+    choiceA.innterHTML = currentQuestion.choiceA;
+    choiceB.innerHTML = currentQuestion.choiceB;
+    choiceC.innterHTML = currentQuestion.choiceC;
+
+
+
+}

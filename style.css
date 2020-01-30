@@ -1,17 +1,18 @@
-.container{
+#container{
     text-align: center;
 }
 
 .description{
+    text-align: center;
     font-size: 25px;
     margin: auto;
     height: 150px;
     width: 700px;
 }
 
-.start-button{
-    height: 40px;
-    margin: auto;
+#start{
+    height: 50px;
+    margin: 0 auto;
 
 
 }
