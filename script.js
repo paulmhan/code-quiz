@@ -1,5 +1,5 @@
 // select all html elements 
-
+let instruction = document.getElementById("instruction")
 let start = document.getElementById("start");
 let quiz = document.getElementById("quiz");
 let question = document.getElementById("question");
@@ -7,10 +7,9 @@ let choiceA = document.getElementById("A");
 let choiceB = document.getElementById("B");
 let choiceC = document.getElementById("C");
 let choiceD = document.getElementById("D");
-let counter = document.getElementById("counter");
-let timeGauge = document.getElementById("timeGauge");
+let time = document.getElementById("time");
 let progress = document.getElementById("progress");
-let highScore = document.getElementById("highScore");
+let scoreDiv = document.getElementById("score");
 
 //list of all of my questoins 
 const questions = [
@@ -88,7 +87,7 @@ const questions = [
         answer: "B"
     },
     {
-        question: "Is Java the samething as Javascript?",
+        question: "Is Java the same thing as Javascript?",
         choiceA: "yes",
         choiceB: "no",
         choiceC: "it used to be",
@@ -110,6 +109,7 @@ function renderQuestion(){
     choiceA.innterHTML = currentQ.choiceA;
     choiceB.innerHTML = currentQ.choiceB;
     choiceC.innterHTML = currentQ.choiceC;
+    choiceD.innterHTML = currentQ.choiceD;
 }
 
 //start quiz
@@ -117,20 +117,59 @@ start.addEventListener("click", startQuiz);
 
 function startQuiz(){
     start.style.display = "none";
+    instruction.style.display = "none";
     renderQuestion();
     quiz.style.display = "block";
     renderScore();
     renderTimer();
 }
 
-//render score
-function renderScore(){
+//render current score
+function renderCurrentScore(){
     for (let i = 0; i <= lastQ; i++){
-        progress.textContent += 10;
+        progress.innerHTML = score
+    }
+}
+
+//render timer
+
+
+function renderTimer(){
+    let timerInterval = setInterval(function(){
+        timeLeft--;
+        time.textContent = `You have ${timeLeft} seconds remaining.`;
+
+        if(timeLeft === 0){
+            clearInterval(timerInterval);
+            renderFinalScore();
+        }
+    }, 1000);
+}
+
+// checkAnwer
+
+function checkAnswer(answer){
+    if( answer === questions[indexQ].correct){
+        score++;
+    }else{
+        timeLeft -= 10;
+    } 
+    if(indexQ < lastQ){
+        indexQ++;
+        renderQuestion();
+    }else{
+        clearInterval(timerInterval);
+        renderFinalScore();
     }
 }
 
 
+//render final score
 
+function renderFinalScore(){
+    scoreDiv.style.display = "block";
+    scoreDiv.textContent = `Good job! You scored ${score} points!`
+
+}
 
 
