@@ -11,7 +11,7 @@ let time = document.getElementById("time");
 let progress = document.getElementById("progress");
 let scoreDiv = document.getElementById("score");
 
-//list of all of my questoins 
+//list of all of my questions 
 const questions = [
     {
         question: "Which of the following is NOT a javascript data type?",
@@ -120,7 +120,7 @@ function startQuiz(){
     instruction.style.display = "none";
     renderQuestion();
     quiz.style.display = "block";
-    renderScore();
+    renderCurrentScore();
     renderTimer();
 }
 
