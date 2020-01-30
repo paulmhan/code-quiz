@@ -1,3 +1,5 @@
+// select all html elements 
+
 let start = document.getElementById("start");
 let quiz = document.getElementById("quiz");
 let question = document.getElementById("question");
@@ -8,8 +10,9 @@ let choiceD = document.getElementById("D");
 let counter = document.getElementById("counter");
 let timeGauge = document.getElementById("timeGauge");
 let progress = document.getElementById("progress");
-let scoreDiv = document.getElementById("highScore");
+let highScore = document.getElementById("highScore");
 
+//list of all of my questoins 
 const questions = [
     {
         question: "Which of the following is NOT a javascript data type?",
@@ -94,17 +97,40 @@ const questions = [
     }
 ];
 
+//create all variables here
+let lastQ = questions.length - 1;
+let indexQ = 0;
+let score = 0
+let timeLeft = 90
 
-let lastQuestion = questions.length - 1;
-let whichQuestion = 0;
-
-function showQuestion(){
-    let currentQuestion = questions[whichQuestion];
-    question.innerHTML = "<p>" + currentQuestion.question + "</p>";
-    choiceA.innterHTML = currentQuestion.choiceA;
-    choiceB.innerHTML = currentQuestion.choiceB;
-    choiceC.innterHTML = currentQuestion.choiceC;
-
-
-
+//render a question 
+function renderQuestion(){
+    let currentQ = questions[indexQ];
+    question.innerHTML = "<p>" + currentQ.question + "</p>";
+    choiceA.innterHTML = currentQ.choiceA;
+    choiceB.innerHTML = currentQ.choiceB;
+    choiceC.innterHTML = currentQ.choiceC;
 }
+
+//start quiz
+start.addEventListener("click", startQuiz);
+
+function startQuiz(){
+    start.style.display = "none";
+    renderQuestion();
+    quiz.style.display = "block";
+    renderScore();
+    renderTimer();
+}
+
+//render score
+function renderScore(){
+    for (let i = 0; i <= lastQ; i++){
+        progress.textContent += 10;
+    }
+}
+
+
+
+
+
