@@ -9,6 +9,7 @@ let choiceC = document.getElementById("C");
 let choiceD = document.getElementById("D");
 let time = document.getElementById("time");
 let scoreDiv = document.getElementById("score");
+let finalScore = document.getElementById("final-score");
 
 //list of all of my questions 
 const questions = [
@@ -98,8 +99,8 @@ const questions = [
 //create all variables here
 let lastQ = questions.length - 1;
 let indexQ = 0;
-let score = 0
-let timeLeft = 90
+let score = 0;
+let timeLeft = 5;
 
 //render a question 
 function renderQuestion(){
@@ -119,31 +120,31 @@ function startQuiz(){
     instruction.style.display = "none";
     renderQuestion();
     quiz.style.display = "block";
-    // renderCurrentScore();
-    // renderTimer();
+    renderCurrentScore();
+    renderTimer();
 }
 
-// //render current score
-// function renderCurrentScore(){
-//     for (let i = 0; i <= lastQ; i++){
-//         progress.innerHTML = score
-//     }
-// }
+//render current score
+function renderCurrentScore(){
+    scoreDiv.style.display = "block";
+    for (let i = 0; i <= lastQ; i++){
+        scoreDiv.textContent = `Current Score: ${score}`;
+    }
+}
 
-// //render timer
+//render timer
 
+function renderTimer(){
+    let timerInterval = setInterval(function(){
+        timeLeft--;
+        time.textContent = `Seconds Left: ${timeLeft}`;
 
-// function renderTimer(){
-//     let timerInterval = setInterval(function(){
-//         timeLeft--;
-//         time.textContent = `You have ${timeLeft} seconds remaining.`;
-
-//         if(timeLeft === 0){
-//             clearInterval(timerInterval);
-//             renderFinalScore();
-//         }
-//     }, 1000);
-// }
+        if(timeLeft === 0){
+            clearInterval(timerInterval);
+            renderFinalScore();
+        }
+    }, 1000);
+}
 
 // // checkAnwer
 
@@ -163,12 +164,13 @@ function startQuiz(){
 // }
 
 
-// //render final score
+//render final score
 
-// function renderFinalScore(){
-//     scoreDiv.style.display = "block";
-//     scoreDiv.textContent = `Good job! You scored ${score} points!`
+function renderFinalScore(){
+    quiz.style.display = "none";
+    finalScore.style.display = "block";
+    finalScore.textContent = `Good job! You scored ${score} points!`
 
-// }
+}
 
 

@@ -1,5 +1,6 @@
 #container{
     text-align: center;
+    position: relative;
 }
 
 #instruction{
@@ -31,4 +32,17 @@
     border-radius: 5px;
     cursor: pointer;
     padding : 5px;
+}
+
+
+#score{
+    position: absolute;
+    top: 0;
+    right: 15px;
+}
+
+#time{
+    position: absolute;
+    top: 0;
+    left: 15px;
 }
