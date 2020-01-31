@@ -19,7 +19,7 @@ const questions = [
         choiceB: "Object",
         choiceC: "Table",
         choiceD: "String",
-        answer: "C"
+        correct: "C"
     },
     {
         question: "Which parenthesis type is used to invoke functions?",
@@ -27,7 +27,7 @@ const questions = [
         choiceB: "[]",
         choiceC: "||",
         choiceD: "()",
-        answer: "D"
+        correct: "D"
     },
     {
         question: "What will this statement return: console.log('7' == 7)",
@@ -35,7 +35,7 @@ const questions = [
         choiceB: "false",
         choiceC: "maybe",
         choiceD: "error",
-        answer: "A"
+        correct: "A"
     },
     {
         question: "What will this statement return: console.log('7' === 7)",
@@ -43,7 +43,7 @@ const questions = [
         choiceB: "false",
         choiceC: "maybe",
         choiceD: "error",
-        answer: "B"
+        correct: "B"
     },
     {
         question: "Commonly used data types DO NOT include:",
@@ -51,7 +51,7 @@ const questions = [
         choiceB: "booleans",
         choiceC: "alerts",
         choiceD: "numbers",
-        answer: "C"
+        correct: "C"
     },
     {
         question: "The condition in an if / else statement is enclosed within ____.",
@@ -59,7 +59,7 @@ const questions = [
         choiceB: "curly brackets",
         choiceC: "parantheses",
         choiceD: "square brackets",
-        answer: "C"
+        correct: "C"
     },
 
     {
@@ -68,7 +68,7 @@ const questions = [
         choiceB: "<java>",
         choiceC: "<script>",
         choiceD: "<javascript>",
-        answer: "C"
+        correct: "C"
     },
     {
         question: "How do you add a comment in Javascript?",
@@ -76,7 +76,7 @@ const questions = [
         choiceB: "<!-->",
         choiceC: "..",
         choiceD: "||",
-        answer: "A"
+        correct: "A"
     },
     {
         question: "Which parenthesis type is used to create an array?",
@@ -84,7 +84,7 @@ const questions = [
         choiceB: "[]",
         choiceC: "||",
         choiceD: "()",
-        answer: "B"
+        correct: "B"
     },
     {
         question: "Is Java the same thing as Javascript?",
@@ -92,7 +92,7 @@ const questions = [
         choiceB: "no",
         choiceC: "it used to be",
         choiceD: "only on Mondays",
-        answer: "B"
+        correct: "B"
     }
 ];
 
@@ -100,7 +100,7 @@ const questions = [
 let lastQ = questions.length - 1;
 let indexQ = 0;
 let score = 0;
-let timeLeft = 5;
+let timeLeft = 90;
 
 //render a question 
 function renderQuestion(){
@@ -120,17 +120,11 @@ function startQuiz(){
     instruction.style.display = "none";
     renderQuestion();
     quiz.style.display = "block";
-    renderCurrentScore();
+    scoreDiv.style.display = "block";
+    scoreDiv.textContent = `Current Score: ${score}`;
     renderTimer();
 }
 
-//render current score
-function renderCurrentScore(){
-    scoreDiv.style.display = "block";
-    for (let i = 0; i <= lastQ; i++){
-        scoreDiv.textContent = `Current Score: ${score}`;
-    }
-}
 
 //render timer
 
@@ -139,29 +133,30 @@ function renderTimer(){
         timeLeft--;
         time.textContent = `Seconds Left: ${timeLeft}`;
 
-        if(timeLeft === 0){
+        if(timeLeft <= 0){
             clearInterval(timerInterval);
             renderFinalScore();
         }
     }, 1000);
 }
 
-// // checkAnwer
+// checkAnwer
 
-// function checkAnswer(answer){
-//     if( answer === questions[indexQ].correct){
-//         score++;
-//     }else{
-//         timeLeft -= 10;
-//     } 
-//     if(indexQ < lastQ){
-//         indexQ++;
-//         renderQuestion();
-//     }else{
-//         clearInterval(timerInterval);
-//         renderFinalScore();
-//     }
-// }
+function checkAnswer(answer){
+    if(answer === questions[indexQ].correct){
+        score++;
+        scoreDiv.textContent = `Current Score: ${score}`;
+    }else{
+        timeLeft -= 10;
+    } 
+    if(indexQ < lastQ){
+        indexQ++;
+        renderQuestion();
+    }else{
+        clearInterval(timerInterval);
+        renderFinalScore();
+    }
+}
 
 
 //render final score
@@ -169,7 +164,7 @@ function renderTimer(){
 function renderFinalScore(){
     quiz.style.display = "none";
     finalScore.style.display = "block";
-    finalScore.textContent = `Good job! You scored ${score} points!`
+    finalScore.textContent = `Good job! You scored ${score} point(s)!`
 
 }
 
