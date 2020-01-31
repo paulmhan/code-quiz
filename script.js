@@ -102,7 +102,7 @@ const questions = [
 let lastQ = questions.length - 1;
 let indexQ = 0;
 let score = 0;
-let timeLeft = 5;
+let timeLeft = 15;
 
 //render a question 
 function renderQuestion(){
@@ -143,7 +143,7 @@ function renderTimer(){
     }, 1000);
 }
 
-// checkAnwer
+// check if answers are right and display "correct" or "incorrect" as message
 
 function checkAnswer(answer){
     if(answer === questions[indexQ].correct){
@@ -164,6 +164,15 @@ function checkAnswer(answer){
     }
 }
 
+function answerCorrect(){
+    correct.textContent = "Correct!";
+    
+}
+
+function answerWrong(){
+    correct.textContent = "Incorrect!"
+}
+
 
 //render final score
 
@@ -178,17 +187,19 @@ function renderFinalScore(){
 restart.addEventListener("click", restartQuiz);
 
 function restartQuiz(){
-    finalScore.style.display = "none"
-    let score = 0
-    let timeLeft = 5
-    let lastQ = questions.length - 1;
-    let indexQ = 0;
+    restart.style.display = "none";
+    finalScore.style.display = "none";
+    correct.textContent = "";
+    score = 0;
+    timeLeft = 15;
+    lastQ = questions.length - 1;
+    indexQ = 0;
     startQuiz();
 }
 
 
 // Need help with: 
-// 1) Restart function
+// 1) Hiding "correct" and "incorrect"
 // 2) Ending game when last question is chosen, regardless if question is right or wrong
 // 3) Allowing one to put initials and save initials to high score/local storage
 // 4) Function to clear all high scores
