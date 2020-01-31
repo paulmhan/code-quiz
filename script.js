@@ -8,7 +8,6 @@ let choiceB = document.getElementById("B");
 let choiceC = document.getElementById("C");
 let choiceD = document.getElementById("D");
 let time = document.getElementById("time");
-let progress = document.getElementById("progress");
 let scoreDiv = document.getElementById("score");
 
 //list of all of my questions 
@@ -106,10 +105,10 @@ let timeLeft = 90
 function renderQuestion(){
     let currentQ = questions[indexQ];
     question.innerHTML = "<p>" + currentQ.question + "</p>";
-    choiceA.innterHTML = currentQ.choiceA;
-    choiceB.innerHTML = currentQ.choiceB;
-    choiceC.innterHTML = currentQ.choiceC;
-    choiceD.innterHTML = currentQ.choiceD;
+    choiceA.textContent = currentQ.choiceA;
+    choiceB.textContent = currentQ.choiceB;
+    choiceC.textContent = currentQ.choiceC;
+    choiceD.textContent = currentQ.choiceD;
 }
 
 //start quiz
@@ -120,56 +119,56 @@ function startQuiz(){
     instruction.style.display = "none";
     renderQuestion();
     quiz.style.display = "block";
-    renderCurrentScore();
-    renderTimer();
+    // renderCurrentScore();
+    // renderTimer();
 }
 
-//render current score
-function renderCurrentScore(){
-    for (let i = 0; i <= lastQ; i++){
-        progress.innerHTML = score
-    }
-}
+// //render current score
+// function renderCurrentScore(){
+//     for (let i = 0; i <= lastQ; i++){
+//         progress.innerHTML = score
+//     }
+// }
 
-//render timer
-
-
-function renderTimer(){
-    let timerInterval = setInterval(function(){
-        timeLeft--;
-        time.textContent = `You have ${timeLeft} seconds remaining.`;
-
-        if(timeLeft === 0){
-            clearInterval(timerInterval);
-            renderFinalScore();
-        }
-    }, 1000);
-}
-
-// checkAnwer
-
-function checkAnswer(answer){
-    if( answer === questions[indexQ].correct){
-        score++;
-    }else{
-        timeLeft -= 10;
-    } 
-    if(indexQ < lastQ){
-        indexQ++;
-        renderQuestion();
-    }else{
-        clearInterval(timerInterval);
-        renderFinalScore();
-    }
-}
+// //render timer
 
 
-//render final score
+// function renderTimer(){
+//     let timerInterval = setInterval(function(){
+//         timeLeft--;
+//         time.textContent = `You have ${timeLeft} seconds remaining.`;
 
-function renderFinalScore(){
-    scoreDiv.style.display = "block";
-    scoreDiv.textContent = `Good job! You scored ${score} points!`
+//         if(timeLeft === 0){
+//             clearInterval(timerInterval);
+//             renderFinalScore();
+//         }
+//     }, 1000);
+// }
 
-}
+// // checkAnwer
+
+// function checkAnswer(answer){
+//     if( answer === questions[indexQ].correct){
+//         score++;
+//     }else{
+//         timeLeft -= 10;
+//     } 
+//     if(indexQ < lastQ){
+//         indexQ++;
+//         renderQuestion();
+//     }else{
+//         clearInterval(timerInterval);
+//         renderFinalScore();
+//     }
+// }
+
+
+// //render final score
+
+// function renderFinalScore(){
+//     scoreDiv.style.display = "block";
+//     scoreDiv.textContent = `Good job! You scored ${score} points!`
+
+// }
 
 

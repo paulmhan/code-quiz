@@ -13,15 +13,14 @@
 #start{
     height: 50px;
     margin: 0 auto;
-
 }
 
 #choices{
-    width : 480px;
-    position: absolute;
-    right : 0;
+    margin: auto;
     top : 125px;
     padding : 10px;
+    font-size: 20px;
+
 }
 
 .choice{
@@ -32,8 +31,4 @@
     border-radius: 5px;
     cursor: pointer;
     padding : 5px;
-}
-
-#A{
-    font-size: 45px;
 }
