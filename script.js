@@ -10,6 +10,8 @@ let choiceD = document.getElementById("D");
 let time = document.getElementById("time");
 let scoreDiv = document.getElementById("score");
 let finalScore = document.getElementById("final-score");
+let restart = document.getElementById("restart");
+let correct = document.getElementById("correct");
 
 //list of all of my questions 
 const questions = [
@@ -100,7 +102,7 @@ const questions = [
 let lastQ = questions.length - 1;
 let indexQ = 0;
 let score = 0;
-let timeLeft = 90;
+let timeLeft = 5;
 
 //render a question 
 function renderQuestion(){
@@ -136,6 +138,7 @@ function renderTimer(){
         if(timeLeft <= 0){
             clearInterval(timerInterval);
             renderFinalScore();
+            restart.style.display = "block";
         }
     }, 1000);
 }
@@ -145,8 +148,10 @@ function renderTimer(){
 function checkAnswer(answer){
     if(answer === questions[indexQ].correct){
         score++;
+        answerCorrect();
         scoreDiv.textContent = `Current Score: ${score}`;
     }else{
+        answerWrong();
         timeLeft -= 10;
     } 
     if(indexQ < lastQ){
@@ -155,6 +160,7 @@ function checkAnswer(answer){
     }else{
         clearInterval(timerInterval);
         renderFinalScore();
+        restart.style.display = "block";
     }
 }
 
@@ -168,4 +174,21 @@ function renderFinalScore(){
 
 }
 
+//restart option 
+restart.addEventListener("click", restartQuiz);
 
+function restartQuiz(){
+    finalScore.style.display = "none"
+    let score = 0
+    let timeLeft = 5
+    let lastQ = questions.length - 1;
+    let indexQ = 0;
+    startQuiz();
+}
+
+
+// Need help with: 
+// 1) Restart function
+// 2) Ending game when last question is chosen, regardless if question is right or wrong
+// 3) Allowing one to put initials and save initials to high score/local storage
+// 4) Function to clear all high scores
