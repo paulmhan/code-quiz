@@ -12,6 +12,10 @@ let scoreDiv = document.getElementById("score");
 let finalScore = document.getElementById("final-score");
 let restart = document.getElementById("restart");
 let correct = document.getElementById("correct");
+let initialsInput = document.getElementById("initials");
+let submitButton = document.getElementById("submit");
+let msgDiv = document.getElementById("msg");
+let formDiv = document.getElementById("form");
 
 //list of all of my questions 
 const questions = [
@@ -105,7 +109,7 @@ let score = 0;
 let timeLeft = 15;
 
 //render a question 
-function renderQuestion(){
+function renderQuestion() {
     let currentQ = questions[indexQ];
     question.innerHTML = "<p>" + currentQ.question + "</p>";
     choiceA.textContent = currentQ.choiceA;
@@ -117,7 +121,7 @@ function renderQuestion(){
 //start quiz
 start.addEventListener("click", startQuiz);
 
-function startQuiz(){
+function startQuiz() {
     start.style.display = "none";
     instruction.style.display = "none";
     renderQuestion();
@@ -130,53 +134,56 @@ function startQuiz(){
 
 //render timer
 
-function renderTimer(){
-    let timerInterval = setInterval(function(){
+function renderTimer() {
+    let timerInterval = setInterval(function () {
         timeLeft--;
         time.textContent = `Seconds Left: ${timeLeft}`;
 
-        if(timeLeft <= 0){
+        if (timeLeft <= 0) {
             clearInterval(timerInterval);
             renderFinalScore();
             restart.style.display = "block";
+            formDiv.style.display = "block";
+
         }
     }, 1000);
 }
 
 // check if answers are right and display "correct" or "incorrect" as message
 
-function checkAnswer(answer){
-    if(answer === questions[indexQ].correct){
+function checkAnswer(answer) {
+    if (answer === questions[indexQ].correct) {
         score++;
         answerCorrect();
         scoreDiv.textContent = `Current Score: ${score}`;
-    }else{
+    } else {
         answerWrong();
         timeLeft -= 10;
-    } 
-    if(indexQ < lastQ){
+    }
+    if (indexQ < lastQ) {
         indexQ++;
         renderQuestion();
-    }else{
+    } else {
         clearInterval(timerInterval);
         renderFinalScore();
         restart.style.display = "block";
+        formDiv.style.display = "block";
     }
 }
 
-function answerCorrect(){
+function answerCorrect() {
     correct.textContent = "Correct!";
-    
+
 }
 
-function answerWrong(){
+function answerWrong() {
     correct.textContent = "Incorrect!"
 }
 
 
 //render final score
 
-function renderFinalScore(){
+function renderFinalScore() {
     quiz.style.display = "none";
     finalScore.style.display = "block";
     finalScore.textContent = `Good job! You scored ${score} point(s)!`
@@ -186,9 +193,10 @@ function renderFinalScore(){
 //restart option 
 restart.addEventListener("click", restartQuiz);
 
-function restartQuiz(){
+function restartQuiz() {
     restart.style.display = "none";
     finalScore.style.display = "none";
+    formDiv.style.display = "none";
     correct.textContent = "";
     score = 0;
     timeLeft = 15;
@@ -196,6 +204,24 @@ function restartQuiz(){
     indexQ = 0;
     startQuiz();
 }
+
+//submit Initials to high score
+function displayMessage(type, message) {
+    msgDiv.textContent = message;
+    msgDiv.setAttribute("class", type);
+}
+
+submitButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    let initials = document.querySelector("#initials").value;
+    if (initials === "") {
+        displayMessage("error", "Initials cannot be blank");
+    } else {
+        displayMessage("success", "Saved successfully");
+        localStorage.setItem("initials", initials);
+        renderLastRegistered();
+    }
+});
 
 
 // Need help with: 
