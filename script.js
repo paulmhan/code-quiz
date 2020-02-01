@@ -212,6 +212,7 @@ function restartQuiz() {
     finalScore.style.display = "none";
     formDiv.style.display = "none";
     hScore.style.display = "none";
+    clear.style.display = "none";
     correct.textContent = "";
     counter = 0;
     score = 0;
