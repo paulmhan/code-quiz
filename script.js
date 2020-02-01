@@ -214,7 +214,7 @@ function restartQuiz() {
     correct.textContent = "";
     counter = 0;
     score = 0;
-    timeLeft = 5;
+    timeLeft = 90;
     lastQ = questions.length - 1;
     indexQ = 0;
     startQuiz();
