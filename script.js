@@ -16,6 +16,9 @@ let initialsInput = document.getElementById("initials");
 let submitButton = document.getElementById("submit");
 let msgDiv = document.getElementById("msg");
 let formDiv = document.getElementById("form");
+let hScore = document.getElementById("high-score")
+let names = document.getElementById("names")
+let title = document.getElementById("title");
 let currentQ;
 
 //list of all of my questions 
@@ -132,6 +135,7 @@ function renderQuestion() {
 start.addEventListener("click", startQuiz);
 
 function startQuiz() {
+    hScore.style.display = "none";
     start.style.display = "none";
     instruction.style.display = "none";
     renderQuestion();
@@ -154,6 +158,7 @@ function renderTimer() {
             renderFinalScore();
             restart.style.display = "block";
             formDiv.style.display = "block";
+            
 
         }
     }, 1000);
@@ -193,6 +198,7 @@ function answerWrong() {
 function renderFinalScore() {
     quiz.style.display = "none";
     finalScore.style.display = "block";
+    hScore.style.display = "block";
     finalScore.textContent = `Good job! You scored ${score} point(s)!`
 
 }
@@ -204,10 +210,11 @@ function restartQuiz() {
     restart.style.display = "none";
     finalScore.style.display = "none";
     formDiv.style.display = "none";
+    hScore.style.display = "none";
     correct.textContent = "";
     counter = 0;
     score = 0;
-    timeLeft = 90;
+    timeLeft = 5;
     lastQ = questions.length - 1;
     indexQ = 0;
     startQuiz();
@@ -227,12 +234,31 @@ submitButton.addEventListener("click", function (event) {
     } else {
         displayMessage("success", "Saved successfully");
         localStorage.setItem(initials, score);
-        // showHighscore();
+        showHighScore();
     }
 });
 
-// function showHighscore(){
-//     //for loop here
-//     localStorage.getItem(initials,)
+hScore.addEventListener("click", showHighscore);
+
+
+
+function showHighscore(){
+    hScore.style.alignContent = "center";
+    hScore.style.textAlign = "center";
+    finalScore.style.display = "none";
+    formDiv.style.display = "none";
+    restart.style.display = "block";
+    title.style.display = "none";
+    for(let i in localStorage)
+{
+    console.log(localStorage[i]);
+}
+}
+
+
+
+//     for(let key in localStorage) {
+//         names.append(localStorage.getItem(key));
+//       }
 // }
 

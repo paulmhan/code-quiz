@@ -1,6 +1,11 @@
+body{
+    background-color: bisque;
+}
+
 #container{
     text-align: center;
     position: relative;
+    
 }
 
 #instruction{
@@ -54,4 +59,13 @@
 #restart{
     height: 50px;
     margin: 0 auto;
+}
+
+#high-score{
+    text-align: left;
+}
+
+#high-score:hover{
+    color: blue;
+
 }
