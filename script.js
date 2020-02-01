@@ -111,7 +111,7 @@ const questions = [
 let lastQ = questions.length - 1;
 let indexQ = 0;
 let score = 0;
-let timeLeft = 5;
+let timeLeft = 90;
 let counter = 0;
 
 //render a question 
@@ -215,7 +215,7 @@ function restartQuiz() {
     correct.textContent = "";
     counter = 0;
     score = 0;
-    timeLeft = 5;
+    timeLeft = 90;
     lastQ = questions.length - 1;
     indexQ = 0;
     startQuiz();
