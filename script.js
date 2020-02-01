@@ -254,6 +254,7 @@ function showHighScore(){
     clear.style.alignContent = "center";
     clear.style.textAlign = "center";
     title.style.display = "none";
+    names.innerHTML = "";
     for(let key in localStorage) {
         if(localStorage.hasOwnProperty(key)) {
             console.log(key);
