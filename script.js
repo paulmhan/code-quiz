@@ -19,6 +19,7 @@ let formDiv = document.getElementById("form");
 let hScore = document.getElementById("high-score")
 let names = document.getElementById("names")
 let title = document.getElementById("title");
+let clear = document.getElementById("clear");
 let currentQ;
 
 //list of all of my questions 
@@ -110,7 +111,7 @@ const questions = [
 let lastQ = questions.length - 1;
 let indexQ = 0;
 let score = 0;
-let timeLeft = 90;
+let timeLeft = 5;
 let counter = 0;
 
 //render a question 
@@ -214,7 +215,7 @@ function restartQuiz() {
     correct.textContent = "";
     counter = 0;
     score = 0;
-    timeLeft = 90;
+    timeLeft = 5;
     lastQ = questions.length - 1;
     indexQ = 0;
     startQuiz();
@@ -238,27 +239,41 @@ submitButton.addEventListener("click", function (event) {
     }
 });
 
-hScore.addEventListener("click", showHighscore);
+hScore.addEventListener("click", showHighScore);
 
 
 
-function showHighscore(){
+function showHighScore(){
     hScore.style.alignContent = "center";
     hScore.style.textAlign = "center";
     finalScore.style.display = "none";
     formDiv.style.display = "none";
     restart.style.display = "block";
+    clear.style.display = "block";
+    clear.style.alignContent = "center";
+    clear.style.textAlign = "center";
     title.style.display = "none";
-    for(let i in localStorage)
-{
-    console.log(localStorage[i]);
+    for(let key in localStorage) {
+        if(localStorage.hasOwnProperty(key)) {
+            console.log(key);
+            let li = document.createElement("li");
+            li.textContent = `${key}: ${localStorage.getItem(key)}`
+            key + localStorage.getItem(key);
+            names.append(li);
+        }
+    }
 }
+
+clear.addEventListener("click",clearLS);
+
+function clearLS(){
+    localStorage.clear();
+    names.innerHTML = "";
+
 }
 
 
 
-//     for(let key in localStorage) {
-//         names.append(localStorage.getItem(key));
-//       }
-// }
+
+
 
