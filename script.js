@@ -16,6 +16,7 @@ let initialsInput = document.getElementById("initials");
 let submitButton = document.getElementById("submit");
 let msgDiv = document.getElementById("msg");
 let formDiv = document.getElementById("form");
+let currentQ;
 
 //list of all of my questions 
 const questions = [
@@ -106,16 +107,25 @@ const questions = [
 let lastQ = questions.length - 1;
 let indexQ = 0;
 let score = 0;
-let timeLeft = 15;
+let timeLeft = 90;
+let counter = 0;
 
 //render a question 
 function renderQuestion() {
-    let currentQ = questions[indexQ];
-    question.innerHTML = "<p>" + currentQ.question + "</p>";
-    choiceA.textContent = currentQ.choiceA;
-    choiceB.textContent = currentQ.choiceB;
-    choiceC.textContent = currentQ.choiceC;
-    choiceD.textContent = currentQ.choiceD;
+    currentQ = questions[indexQ];
+    if ((lastQ+1) === counter){
+        renderFinalScore();
+        restart.style.display = "block";
+        formDiv.style.display = "block";
+    } else {
+        counter++;
+        question.innerHTML = "<p>" + currentQ.question + "</p>";
+        choiceA.textContent = currentQ.choiceA;
+        choiceB.textContent = currentQ.choiceB;
+        choiceC.textContent = currentQ.choiceC;
+        choiceD.textContent = currentQ.choiceD;
+        
+    } 
 }
 
 //start quiz
@@ -156,19 +166,16 @@ function checkAnswer(answer) {
         score++;
         answerCorrect();
         scoreDiv.textContent = `Current Score: ${score}`;
-    } else {
-        answerWrong();
-        timeLeft -= 10;
-    }
-    if (indexQ < lastQ) {
         indexQ++;
         renderQuestion();
-    } else {
-        clearInterval(timerInterval);
-        renderFinalScore();
-        restart.style.display = "block";
-        formDiv.style.display = "block";
+        
+    } else if (answer != questions[indexQ].correct) {
+        answerWrong();
+        timeLeft -= 10;
+        indexQ++;
+        renderQuestion();
     }
+       
 }
 
 function answerCorrect() {
@@ -198,8 +205,9 @@ function restartQuiz() {
     finalScore.style.display = "none";
     formDiv.style.display = "none";
     correct.textContent = "";
+    counter = 0;
     score = 0;
-    timeLeft = 15;
+    timeLeft = 90;
     lastQ = questions.length - 1;
     indexQ = 0;
     startQuiz();
@@ -218,14 +226,13 @@ submitButton.addEventListener("click", function (event) {
         displayMessage("error", "Initials cannot be blank");
     } else {
         displayMessage("success", "Saved successfully");
-        localStorage.setItem("initials", initials);
-        renderLastRegistered();
+        localStorage.setItem(initials, score);
+        // showHighscore();
     }
 });
 
+// function showHighscore(){
+//     //for loop here
+//     localStorage.getItem(initials,)
+// }
 
-// Need help with: 
-// 1) Hiding "correct" and "incorrect"
-// 2) Ending game when last question is chosen, regardless if question is right or wrong
-// 3) Allowing one to put initials and save initials to high score/local storage
-// 4) Function to clear all high scores
