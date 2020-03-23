@@ -5,13 +5,13 @@
 
 I used a simple layout with minimal styling. I centered everything within the container div, and at the start of the game, only the title, instructions, and start button are visible. 
 
-![Alt text](images/instructions.png?raw=true)
+![Alt text](assets/images/instructions.png?raw=true)
 
 
 # Starting the Quiz
 Once the start button is clicked, the instructions will disappear. The first question of ten will show up, and in the top left corner, the counter will start ticking down from 90 seconds. In the top right corner, the score will appear, counting up by one for every correct answer. For every wrong answer, the timer will deduct an additional ten seconds. 
 
-![Alt text](images/midgame.png?raw=true)
+![Alt text](assets/images/midgame.png?raw=true)
 
 # Finishing the Quiz
 
@@ -19,7 +19,7 @@ The quiz will finish once the timer runs out, or the last question is answered. 
 
 In the top left corner, there is a link to the high scores, where if clicked, will hide all elements and display a list of the names and corresponding scores. 
 
-![Alt text](images/endgame.png?raw=true)
+![Alt text](assets/images/endgame.png?raw=true)
 
 # What I Learned
 
